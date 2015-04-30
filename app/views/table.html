@@ -14,11 +14,11 @@
       <th>Member</th>
       <th ng-repeat="month in months" ng-bind="month"></th>
     <tr>
-    <tr ng-repeat="member in members" >
-      <td ng-bind="member" ></td>
-      <td ng-repeat="month in months">
-        <button type="button" ng-click="changeState($parent.$index, $index)" class="btn btn-success" aria-label="Mark Accepted">
-          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+    <tr ng-repeat="member in membersDict" >
+      <td ng-bind="member.name" ></td>
+      <td ng-repeat="month in member.months track by $index">
+        <button type="button" ng-click="changeState($parent.$index, $index)" class="btn" ng-class="{'btn-success': month==1, 'btn-danger': month!=1}" aria-label="Mark Accepted">
+          <span class="glyphicon" ng-class="{'glyphicon-ok': month==1, 'glyphicon-remove': month!=1}" aria-hidden="true"></span>
         </button>
       </td>
     </tr>
