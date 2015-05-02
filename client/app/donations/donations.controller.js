@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('testmeanApp')
-  .controller('DonationsCtrl', function ($scope) {
+  .controller('DonationsCtrl', function ($scope, $http, socket) {
     $scope.members = ['User 1', 'User 2', 'User 3'];
     $scope.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     $scope.changeState = function (user, month) {
@@ -17,4 +17,13 @@ angular.module('testmeanApp')
       { name: 'Hunter', username: 'hunter', months: [0,0,0,0,0,0,0,0,0,0,0,0] },
     ];
     $scope.messages = [];
+
+    $http.get('/api/payments').success(function(memberPayments) {
+      $scope.memberPayments = memberPayments;
+      socket.syncUpdates('payment', $scope.memberPayments);
+    });
+
+    $scope.$on('$destroy', function () {
+      socket.unsyncUpdates('payment');
+    });
   });
