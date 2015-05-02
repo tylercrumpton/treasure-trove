@@ -12,9 +12,9 @@ angular.module('testmeanApp')
 
     };
     $scope.membersDict = [
-      { name: 'Tyler', months: [0,0,0,0,0,0,0,0,0,0,0,0] },
-      { name: 'Nathan', months: [0,0,0,0,0,0,0,0,0,0,0,0] },
-      { name: 'Hunter', months: [0,0,0,0,0,0,0,0,0,0,0,0] },
+      { name: 'Tyler', username: 'tylercrumpton', months: [0,0,0,0,0,0,0,0,0,0,0,0] },
+      { name: 'Nathan', username: 'itsamenathan', months: [0,0,0,0,0,0,0,0,0,0,0,0] },
+      { name: 'Hunter', username: 'hunter', months: [0,0,0,0,0,0,0,0,0,0,0,0] },
     ];
     $scope.messages = [];
   });
