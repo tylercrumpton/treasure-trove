@@ -1,3 +1,22 @@
-<div class="col-md-12">
-This is the donations view.
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <h2>Member Donations</h2>
+  <p>This is the donations view.</p>
+
+  <table class="table table-hover table-condensed">
+    <tr>
+      <th>Member</th>
+      <th ng-repeat="month in months" ng-bind="month"></th>
+    <tr>
+    <tr ng-repeat="member in membersDict" >
+      <td ng-bind="member.name" ></td>
+      <td ng-repeat="month in member.months track by $index">
+        <button type="button" ng-click="changeState($parent.$index, $index)" class="btn" ng-class="{'btn-success': month==1, 'btn-danger': month!=1}" aria-label="Mark Accepted">
+          <span class="glyphicon" ng-class="{'glyphicon-ok': month==1, 'glyphicon-remove': month!=1}" aria-hidden="true"></span>
+        </button>
+      </td>
+    </tr>
+  </table>
+
 </div>
