@@ -11,14 +11,22 @@ angular.module('testmeanApp')
       { name: 'Nathan', username: 'itsamenathan', months: [0,0,0,0,0,0,0,0,0,0,0,0] },
       { name: 'Hunter', username: 'hunter', months: [0,0,0,0,0,0,0,0,0,0,0,0] },
     ];
-    $http.get('/api/payments/users').success(function(memberPayments) {
-      $scope.memberPayments = memberPayments;
-      socket.syncUpdates('payment', $scope.memberPayments);
-    });
+
+    var processUserPayments = function(user) {
+      $http.get('/api/payments/users/'+$scope.membersDict[i].name+'/'+$scope.year).success(function(memberPayments) {
+        for (var j=0; j<memberPayments.length; j++) {
+          var month = memberPayments[j].month;
+          $scope.membersDict[user].months[month] = 1;
+        }
+      });
+    };
+    for (var i=0; i<$scope.membersDict.length; i++) {
+      processUserPayments(i);
+    }
 
     $scope.togglePayment = function(user, month) {
       if($scope.membersDict[user].months[month] == 0) {
-        $http.post('/api/payments/users', { name: $scope.membersDict[user].name,
+        $http.post('/api/payments', { name: $scope.membersDict[user].name,
                                       month: month,
                                       year: $scope.year });
       } else {
@@ -30,7 +38,20 @@ angular.module('testmeanApp')
 
     };
 
-    $scope.$on('$destroy', function () {
-      socket.unsyncUpdates('payment');
+    socket.socket.on('payment:save', function (data) {
+      console.log("SAVE");
+      for (var i=0; i<$scope.membersDict.length; i++) {
+        if ($scope.membersDict[i].name == data.name) {
+          $scope.membersDict[i].months[data.month] = 1;
+        }
+      }
+    });
+    socket.socket.on('payment:remove', function (data) {
+      console.log("REMOVE");
+      for (var i=0; i<$scope.membersDict.length; i++) {
+        if ($scope.membersDict[i].name == data.name) {
+          $scope.membersDict[i].months[data.month] = 0;
+        }
+      }
     });
   });
