@@ -1,7 +1,45 @@
+/**
+ * Using Rails-like standard naming convention for endpoints.
+ * GET     /payments              ->  index
+ * POST    /payments              ->  create
+ * PUT     /payments/:id          ->  update
+ * DELETE  /payments/:id          ->  destroy
+ *
+ * GET     /payments/:name/:year/:month
+ * DELETE  /payments/:name/:year/:month
+ */
+
 'use strict';
 
 var _ = require('lodash');
 var Payment = require('./payment.model');
+
+// Get a single payment
+exports.showByNameYearMon = function(req, res) {
+  var searchModel = {'name': req.params.name,
+                     'year': req.params.year,
+                     'month': req.params.month};
+  Payment.findOne(searchModel, function (err, payment) {
+    if(err) { return handleError(res, err); }
+    if(!payment) { return res.json({'paid':false}); }
+    return res.json({'paid':true});
+  });
+};
+
+// Deletes a payment from the DB.
+exports.destroyByNameYearMon = function(req, res) {
+  var searchModel = {'name': req.params.name,
+                     'year': req.params.year,
+                     'month': req.params.month};
+  Payment.findOne(searchModel, function (err, payment) {
+    if(err) { return handleError(res, err); }
+    if(!payment) { return res.send(404); }
+    payment.remove(function(err) {
+      if(err) { return handleError(res, err); }
+      return res.send(204);
+    });
+  });
+};
 
 // Get list of payments
 exports.index = function(req, res) {

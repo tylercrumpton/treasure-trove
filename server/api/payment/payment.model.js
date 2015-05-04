@@ -5,8 +5,8 @@ var mongoose = require('mongoose'),
 
 var PaymentSchema = new Schema({
   name: String,
-  info: String,
-  active: Boolean
+  month: Number,
+  year: Number
 });
 
 module.exports = mongoose.model('Payment', PaymentSchema);
