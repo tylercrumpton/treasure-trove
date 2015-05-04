@@ -27,6 +27,20 @@ angular.module('testmeanApp')
       socket.syncUpdates('payment', $scope.memberPayments);
     });
 
+    $scope.togglePayment = function(user, month) {
+      if($scope.membersDict[user].months[month] == 0) {
+        $http.post('/api/payments', { name: $scope.membersDict[user].name,
+                                      month: month,
+                                      year: $scope.year });
+      } else {
+        $http.delete('/api/payments/'+$scope.membersDict[user].name+'/'+$scope.year+'/'+month);
+      }
+
+      var prev = $scope.membersDict[user].months[month];
+      $scope.membersDict[user].months[month] = 1-prev;
+
+    };
+
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('payment');
     });
