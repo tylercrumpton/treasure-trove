@@ -2,7 +2,11 @@
 
 angular.module('testmeanApp')
   .controller('DonationsCtrl', function ($scope, $http, socket) {
+    // TODO: Get the users from LDAP:
     $scope.members = ['User 1', 'User 2', 'User 3'];
+
+    var date = new Date();
+    $scope.year = date.getFullYear();
     $scope.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     $scope.changeState = function (user, month) {
       console.log('user: %d, month: %d', user, month);
