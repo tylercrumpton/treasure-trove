@@ -12,7 +12,8 @@ router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 
-router.get('/:name/:year/:month', controller.showByNameYearMon)
-router.delete('/:name/:year/:month', controller.destroyByNameYearMon)
+router.get('/users/:name/:year/:month', controller.showByNameYearMon)
+router.delete('/users/:name/:year/:month', controller.destroyByNameYearMon)
+router.get('/users/:name/:year', controller.showByNameYear)
 
 module.exports = router;

@@ -11,18 +11,18 @@ angular.module('testmeanApp')
       { name: 'Nathan', username: 'itsamenathan', months: [0,0,0,0,0,0,0,0,0,0,0,0] },
       { name: 'Hunter', username: 'hunter', months: [0,0,0,0,0,0,0,0,0,0,0,0] },
     ];
-    $http.get('/api/payments').success(function(memberPayments) {
+    $http.get('/api/payments/users').success(function(memberPayments) {
       $scope.memberPayments = memberPayments;
       socket.syncUpdates('payment', $scope.memberPayments);
     });
 
     $scope.togglePayment = function(user, month) {
       if($scope.membersDict[user].months[month] == 0) {
-        $http.post('/api/payments', { name: $scope.membersDict[user].name,
+        $http.post('/api/payments/users', { name: $scope.membersDict[user].name,
                                       month: month,
                                       year: $scope.year });
       } else {
-        $http.delete('/api/payments/'+$scope.membersDict[user].name+'/'+$scope.year+'/'+month);
+        $http.delete('/api/payments/users/'+$scope.membersDict[user].name+'/'+$scope.year+'/'+month);
       }
 
       var prev = $scope.membersDict[user].months[month];

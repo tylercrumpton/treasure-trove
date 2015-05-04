@@ -26,6 +26,16 @@ exports.showByNameYearMon = function(req, res) {
   });
 };
 
+// Get a year's payments
+exports.showByNameYear = function(req, res) {
+  var searchModel = {'name': req.params.name,
+                     'year': req.params.year};
+  Payment.find(searchModel, function (err, payments) {
+    if(err) { return handleError(res, err); }
+    return res.json(200, payments);
+  });
+};
+
 // Deletes a payment from the DB.
 exports.destroyByNameYearMon = function(req, res) {
   var searchModel = {'name': req.params.name,
