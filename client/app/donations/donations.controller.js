@@ -39,7 +39,6 @@ angular.module('testmeanApp')
     };
 
     socket.socket.on('payment:save', function (data) {
-      console.log("SAVE");
       for (var i=0; i<$scope.membersDict.length; i++) {
         if ($scope.membersDict[i].name == data.name) {
           $scope.membersDict[i].months[data.month] = 1;
@@ -47,7 +46,6 @@ angular.module('testmeanApp')
       }
     });
     socket.socket.on('payment:remove', function (data) {
-      console.log("REMOVE");
       for (var i=0; i<$scope.membersDict.length; i++) {
         if ($scope.membersDict[i].name == data.name) {
           $scope.membersDict[i].months[data.month] = 0;
