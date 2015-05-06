@@ -20,8 +20,8 @@ angular.module('testmeanApp')
         var cb = callback || angular.noop;
         var deferred = $q.defer();
 
-        $http.post('/auth/local', {
-          email: user.email,
+        $http.post('/auth/ldap', {
+          username: user.username,
           password: user.password
         }).
         success(function(data) {
