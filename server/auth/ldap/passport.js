@@ -7,7 +7,7 @@ exports.setup = function (User, config) {
       passwordField: 'password',
       server: {
         url: 'ldap://newldap.256.makerslocal.org:389',
-        searchBase: 'dc=makerslocal,dc=org',
+        searchBase: 'ou=People,dc=makerslocal,dc=org',
         searchFilter: '(uid={{username}})'
       }
     },
