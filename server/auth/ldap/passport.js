@@ -6,16 +6,21 @@ exports.setup = function (User, config) {
       usernameField: 'username',
       passwordField: 'password',
       server: {
-        url: 'ldap://ldap.forumsys.com:389',
-        bindDn: 'cn=read-only-admin,dc=example,dc=com',
-        bindCredentials: 'password',
-        searchBase: 'ou=scientists',
+        url: 'ldap://newldap.256.makerslocal.org:389',
+        searchBase: 'dc=makerslocal,dc=org',
         searchFilter: '(uid={{username}})'
-      }  
+      }
     },
-    function (user, done) {
+    function (ldapuser, done) {
+      console.log(ldapuser);
+      user = new User({name: ldapuser.uid,
+                       email: ldapuser.mail,
+                       provider: "ldap",
+                       role: "admin"});
+
       console.log(user);
       return done(null, user);
+      //});
     }
   ));
 };
