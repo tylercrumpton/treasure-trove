@@ -12,15 +12,12 @@ exports.setup = function (User, config) {
       }
     },
     function (ldapuser, done) {
-      console.log(ldapuser);
-      user = new User({name: ldapuser.uid,
+      var user = new User({name: ldapuser.uid,
                        email: ldapuser.mail,
                        provider: "ldap",
                        role: "admin"});
 
-      console.log(user);
       return done(null, user);
-      //});
     }
   ));
 };
