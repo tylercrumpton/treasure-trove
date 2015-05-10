@@ -25,7 +25,7 @@ exports.index = function(req, res) {
  */
 exports.create = function (req, res, next) {
   var newUser = new User(req.body);
-  newUser.provider = 'local';
+  newUser.provider = 'ldap';
   newUser.role = 'user';
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
