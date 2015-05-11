@@ -6,10 +6,6 @@ angular.module('testmeanApp')
       {
         'title': 'Home',
         'link': '/'
-      },
-      { 
-        'title': 'Donations',
-        'link': '/donations/'
       }
     ];
 

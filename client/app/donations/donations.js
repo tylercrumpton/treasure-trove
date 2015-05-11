@@ -5,6 +5,7 @@ angular.module('testmeanApp')
     $routeProvider
       .when('/donations', {
         templateUrl: 'app/donations/donations.html',
-        controller: 'DonationsCtrl'
+        controller: 'DonationsCtrl',
+        authenticate: true
       });
   });
