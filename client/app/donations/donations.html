@@ -4,20 +4,25 @@
   <h2>Member Donations for <span ng-bind="year"></span></h2>
 
   <table class="table table-hover table-condensed">
-    <tr>
-      <th>Name</th>
-      <th>Username</th>
-      <th ng-repeat="month in months" ng-bind="month"></th>
-    <tr>
+    <thead>
+      <tr>
+        <th>Member</th>
+        <th ng-repeat="month in months" ng-bind="month"></th>
+      <tr>
+    </thead>
+    <tbody>
     <tr ng-repeat="member in membersDict" >
-      <td ng-bind="member.name" ></td>
-      <td ng-bind="member.username" ></td>
+      <td>
+       <strong>{{member.realname}}</strong> ({{member.username}})<br>
+       <span class="text-muted">{{member.email}}</span>
+     </td>
       <td ng-repeat="month in member.months track by $index">
         <button type="button" ng-click="togglePayment($parent.$index, $index)" class="btn" ng-class="{'btn-success': month==1, 'btn-danger': month!=1}" aria-label="Mark Accepted">
           <span class="glyphicon" ng-class="{'glyphicon-ok': month==1, 'glyphicon-remove': month!=1}" aria-hidden="true"></span>
         </button>
       </td>
     </tr>
+    </tbody>
   </table>
 
 </div>
