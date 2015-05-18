@@ -44,19 +44,6 @@ exports.index = function(req, res) {
 };
 
 /**
- * Get a single user
- */
-exports.show = function (req, res, next) {
-  var userId = req.params.id;
-
-  User.findById(userId, function (err, user) {
-    if (err) return next(err);
-    if (!user) return res.send(401);
-    res.json(user.profile);
-  });
-};
-
-/**
  * Get my info
  */
 exports.me = function(req, res, next) {
