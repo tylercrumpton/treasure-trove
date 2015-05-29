@@ -7,7 +7,7 @@ angular.module('testmeanApp')
     $scope.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     
     var processUserPayments = function(user) {
-      $http.get('/api/payments/users/'+$scope.membersDict[user].username+'/'+$scope.year).success(function(memberPayments) {
+      $http.get('/treasure/api/payments/users/'+$scope.membersDict[user].username+'/'+$scope.year).success(function(memberPayments) {
         for (var j=0; j<memberPayments.length; j++) {
           var month = memberPayments[j].month;
           $scope.membersDict[user].months[month] = 1;
@@ -25,11 +25,11 @@ angular.module('testmeanApp')
 
     $scope.togglePayment = function(user, month) {
       if($scope.membersDict[user].months[month] == 0) {
-        $http.post('/api/payments', { name: $scope.membersDict[user].username,
+        $http.post('/treasure/api/payments', { name: $scope.membersDict[user].username,
                                       month: month,
                                       year: $scope.year });
       } else {
-        $http.delete('/api/payments/users/'+$scope.membersDict[user].username+'/'+$scope.year+'/'+month);
+        $http.delete('/treasure/api/payments/users/'+$scope.membersDict[user].username+'/'+$scope.year+'/'+month);
       }
 
       var prev = $scope.membersDict[user].months[month];

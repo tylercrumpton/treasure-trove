@@ -5,7 +5,7 @@ angular.module('testmeanApp')
     $scope.menu = [
       {
         'title': 'Home',
-        'link': '/'
+        'link': '/treasure/'
       }
     ];
 
