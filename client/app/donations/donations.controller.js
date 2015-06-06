@@ -5,7 +5,9 @@ angular.module('testmeanApp')
     var date = new Date();
     $scope.year = date.getFullYear();
     $scope.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    
+    $scope.sortType     = 'realname'; // set the default sort type
+    $scope.sortReverse  = false;  // set the default sort order
+    $scope.searchName   = '';     // set the default search/filter term    
     var processUserPayments = function(user) {
       $http.get('/treasure/api/payments/users/'+$scope.membersDict[user].username+'/'+$scope.year).success(function(memberPayments) {
         for (var j=0; j<memberPayments.length; j++) {
