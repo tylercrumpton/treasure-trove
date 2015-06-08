@@ -22,7 +22,7 @@
        <span class="text-muted">{{member.email}}</span>
      </td>
       <td ng-repeat="month in member.months track by $index">
-        <button type="button" ng-click="togglePayment($parent.$index, $index)" class="btn" ng-class="{'btn-success': month==1, 'btn-danger': month!=1}" aria-label="Mark Accepted">
+        <button type="button" ng-click="togglePayment(member.username, $index)" class="btn" ng-class="{'btn-success': month==1, 'btn-danger': month!=1}" aria-label="Mark Accepted">
           <span class="glyphicon" ng-class="{'glyphicon-ok': month==1, 'glyphicon-remove': month!=1}" aria-hidden="true"></span>
         </button>
       </td>
