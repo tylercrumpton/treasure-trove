@@ -1,5 +1,5 @@
 # Treasure Trove
-
+![screenshot](http://i.imgur.com/z62scIm.png)
 ## Running the server
 
 This server requires that nodejs, bower, and grunt are installed on your system.
