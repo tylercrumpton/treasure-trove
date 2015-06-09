@@ -40,17 +40,9 @@ angular.module('testmeanApp')
     };
 
     socket.socket.on('payment:save', function (data) {
-      for (var i=0; i<$scope.membersDict.length; i++) {
-        if ($scope.membersDict[i] == data.name) {
-          $scope.membersDict[i].months[data.month] = 1;
-        }
-      }
+      $scope.membersDict[data.name].months[data.month] = 1;
     });
     socket.socket.on('payment:remove', function (data) {
-      for (var i=0; i<$scope.membersDict.length; i++) {
-        if ($scope.membersDict[i] == data.name) {
-          $scope.membersDict[i].months[data.month] = 0;
-        }
-      }
+      $scope.membersDict[data.name].months[data.month] = 0;
     });
   });
