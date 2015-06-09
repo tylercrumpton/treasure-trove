@@ -2,7 +2,14 @@
 
 <div class="container">
   <h2>Member Donations for <span ng-bind="year"></span></h2>
-
+  <form>
+    <div class="form-group">
+      <div class="input-group input-group-sm">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+        <input type="text" class="form-control" placeholder="Search members" ng-model="searchMembers">
+      </div>
+    </div>
+  </form>
   <table class="table table-hover table-condensed">
     <thead>
       <tr>
@@ -16,7 +23,7 @@
       <tr>
     </thead>
     <tbody>
-    <tr ng-repeat="member in membersDict | toArray | orderBy:sortType:sortReverse" >
+    <tr ng-repeat="member in membersDict | toArray | orderBy:sortType:sortReverse | filter:searchMembers" >
       <td>
        <strong>{{member.realname}}</strong> ({{member.username}})<br>
        <span class="text-muted">{{member.email}}</span>
