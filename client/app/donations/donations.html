@@ -16,7 +16,7 @@
       <tr>
     </thead>
     <tbody>
-    <tr ng-repeat="member in membersDict | orderBy:sortType:sortReverse" >
+    <tr ng-repeat="member in membersDict | toArray | orderBy:sortType:sortReverse" >
       <td>
        <strong>{{member.realname}}</strong> ({{member.username}})<br>
        <span class="text-muted">{{member.email}}</span>

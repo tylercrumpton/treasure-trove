@@ -1,6 +1,15 @@
 'use strict';
 
 angular.module('testmeanApp')
+  .filter("toArray", function(){
+    return function(obj) {
+      var result = [];
+      angular.forEach(obj, function(val, key) {
+        result.push(val);
+      });
+      return result;
+    };
+  })
   .controller('DonationsCtrl', function ($scope, $http, socket, User) {
     var date = new Date();
     $scope.year = date.getFullYear();
