@@ -13,6 +13,7 @@ angular.module('testmeanApp')
   .controller('DonationsCtrl', function ($scope, $http, socket, User) {
     var date = new Date();
     $scope.year = date.getFullYear();
+    $scope.thisMonth = date.getMonth();
     $scope.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     $scope.sortType     = 'realname'; // set the default sort type
     $scope.sortReverse  = false; // set the default sort order

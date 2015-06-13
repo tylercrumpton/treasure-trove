@@ -1,0 +1,10 @@
+td.delinquent-cell {
+  border: solid 0 #600;
+  border-left-width:2px;
+  padding-left:0.5ex;
+}
+td.late-cell {
+  border: solid 0 #060;
+  border-left-width:2px;
+  padding-left:0.5ex;
+}
