@@ -32,6 +32,7 @@ angular.module('testmeanApp')
         $scope.membersDict[u.username] = {username: u.username, realname: u.realname, email: u.email, months: [0,0,0,0,0,0,0,0,0,0,0,0]};
         processUserPayments(u.username);
       });
+      $scope.numMembers = Object.keys($scope.membersDict).length;
     });
 
     $scope.togglePayment = function(username, month) {
