@@ -15,9 +15,9 @@ angular.module('testmeanApp')
     $scope.year = date.getFullYear();
     $scope.thisMonth = date.getMonth();
     $scope.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    $scope.sortType     = 'realname'; // set the default sort type
-    $scope.sortReverse  = false; // set the default sort order
-    $scope.searchMembers   = ''; // set the default search/filter term
+    $scope.sortType = 'lastname'; // set the default sort type
+    $scope.sortReverse = false; // set the default sort order
+    $scope.searchMembers = ''; // set the default search/filter term
     var processUserPayments = function(username) {
       $http.get('/treasure/api/payments/users/'+username+'/'+$scope.year).success(function(memberPayments) {
         for (var j=0; j<memberPayments.length; j++) {
@@ -30,7 +30,7 @@ angular.module('testmeanApp')
     $scope.membersDict = {}; 
     User.query().$promise.then(function(result){
       angular.forEach(result, function(u, i) {
-        $scope.membersDict[u.username] = {username: u.username, realname: u.realname, email: u.email, months: [0,0,0,0,0,0,0,0,0,0,0,0]};
+        $scope.membersDict[u.username] = {username: u.username, lastname: u.lastname, firstname: u.firstname, email: u.email, months: [0,0,0,0,0,0,0,0,0,0,0,0]};
         processUserPayments(u.username);
       });
       $scope.numMembers = Object.keys($scope.membersDict).length;

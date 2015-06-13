@@ -25,7 +25,7 @@
     <tbody>
     <tr ng-class="{'delinquent-row': member.months[thisMonth-3]==0, 'late-row': member.months[thisMonth-1]==0}" ng-repeat="member in membersDict | toArray | orderBy:sortType:sortReverse | filter:searchMembers" >
       <td>
-       <strong>{{member.realname}}</strong> ({{member.username}})<br>
+       <strong>{{member.firstname}} {{member.lastname}}</strong> ({{member.username}})<br>
        <span class="text-muted">{{member.email}}</span>
      </td>
       <td ng-class="{'delinquent-cell': $index==thisMonth-3, 'late-cell': $index==thisMonth}" ng-repeat="month in member.months track by $index">
