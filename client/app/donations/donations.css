@@ -8,3 +8,10 @@ td.late-cell {
   border-left-width:2px;
   padding-left:0.5ex;
 }
+tr.late-row {
+  background-color: #ffb;
+}
+tr.delinquent-row {
+  background-color: #dcc;
+}
+
