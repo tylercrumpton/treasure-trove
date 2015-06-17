@@ -9,9 +9,9 @@ td.late-cell {
   padding-left:0.5ex;
 }
 tr.late-row {
-  background-color: #ffb;
+  background-color: #fff;
 }
 tr.delinquent-row {
-  background-color: #dcc;
+  background-color: #fcc;
 }
 
