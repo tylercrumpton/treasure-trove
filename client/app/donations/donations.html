@@ -23,12 +23,12 @@
       <tr>
     </thead>
     <tbody>
-    <tr ng-class="{'delinquent-row': member.months[thisMonth-3]==0, 'late-row': member.months[thisMonth-1]==0}" ng-repeat="member in membersDict | toArray | orderBy:sortType:sortReverse | filter:searchMembers" >
+    <tr ng-class="{'delinquent-row': member.months[thisMonth-2]==0, 'late-row': member.months[thisMonth]==0}" ng-repeat="member in membersDict | toArray | orderBy:sortType:sortReverse | filter:searchMembers" >
       <td>
        <strong>{{member.firstname}} {{member.lastname}}</strong> ({{member.username}})<br>
        <span class="text-muted">{{member.email}}</span>
      </td>
-      <td ng-class="{'delinquent-cell': $index==thisMonth-3, 'late-cell': $index==thisMonth}" ng-repeat="month in member.months track by $index">
+      <td ng-class="{'delinquent-cell': $index==thisMonth-2, 'late-cell': $index==thisMonth+1}" ng-repeat="month in member.months track by $index">
         <button type="button" ng-click="togglePayment(member.username, $index)" class="btn" ng-class="{'btn-success': month==1, 'btn-danger': month!=1}" aria-label="Mark Accepted">
           <span class="glyphicon" ng-class="{'glyphicon-ok': month==1, 'glyphicon-remove': month!=1}" aria-hidden="true"></span>
         </button>
