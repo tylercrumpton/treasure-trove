@@ -12,6 +12,7 @@ angular.module('testmeanApp')
   })
   .controller('DonationsCtrl', function ($scope, $http, socket, User) {
     var date = new Date();
+    $scope.membersLoaded = 0;
     $scope.year = date.getFullYear();
     $scope.thisMonth = date.getMonth();
     $scope.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -24,6 +25,7 @@ angular.module('testmeanApp')
           var month = memberPayments[j].month;
           $scope.membersDict[username].months[month] = 1;
         }
+        $scope.membersLoaded += 1;
       });
     };
    
