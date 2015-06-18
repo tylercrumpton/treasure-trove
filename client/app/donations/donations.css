@@ -14,4 +14,6 @@ tr.late-row {
 tr.delinquent-row {
   background-color: #fcc;
 }
-
+a.email-link {
+  color: #999;
+}
