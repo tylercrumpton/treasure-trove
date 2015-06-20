@@ -1,6 +1,27 @@
 'use strict';
 
 angular.module('testmeanApp')
+  .directive('highlighter', ['$timeout', function($timeout) {
+    return {
+      restrict: 'A',
+      scope: {
+        model: '=highlighter'
+      },
+      link: function(scope, element) {
+        scope.$watch('model', function (nv, ov) {
+          if (nv !== ov) {
+            // apply class
+            element.addClass('highlight');
+
+            // auto remove after some delay
+            $timeout(function () {
+              element.removeClass('highlight');
+            }, 5000);
+          }
+        });
+      }
+    };
+  }])
   .filter("toArray", function(){
     return function(obj) {
       var result = [];

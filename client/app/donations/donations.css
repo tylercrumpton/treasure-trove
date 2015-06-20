@@ -17,3 +17,7 @@ tr.delinquent-row {
 a.email-link {
   color: #999;
 }
+.highlight {
+  color: #333!important;
+  transition: color 400ms;
+}
