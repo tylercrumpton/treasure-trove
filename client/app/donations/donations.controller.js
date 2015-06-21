@@ -7,9 +7,9 @@ angular.module('testmeanApp')
       scope: {
         model: '=highlighter'
       },
-      link: function(scope, element) {
+      link: function(scope, element, attrs) {
         scope.$watch('model', function (nv, ov) {
-          if (nv !== ov) {
+          if (nv !== ov && attrs.dohighlight === "true") {
             // apply class
             element.addClass('highlight');
 
