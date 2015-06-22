@@ -19,5 +19,7 @@ a.email-link {
 }
 .highlight {
   color: #333!important;
-  transition: color 400ms;
+}
+.hl-fade {
+ transition: color 400ms;
 }
