@@ -6,10 +6,6 @@ var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var ldap = require('ldapjs');
 
-var ldapclient = ldap.createClient({
-  url: 'ldap://newldap.256.makerslocal.org'
-});
-
 var validationError = function(res, err) {
   return res.json(422, err);
 };
@@ -19,6 +15,9 @@ var validationError = function(res, err) {
  * restriction: 'admin'
  */
 exports.index = function(req, res) {
+  var ldapclient = ldap.createClient({
+    url: 'ldap://newldap.256.makerslocal.org'
+  });
   var opts = {
     scope: 'one',
     filter: '(objectClass=Maker)'};
