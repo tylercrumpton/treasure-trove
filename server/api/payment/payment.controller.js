@@ -14,6 +14,16 @@
 var _ = require('lodash');
 var Payment = require('./payment.model');
 
+// Generates a JSON file export
+exports.genJsonExport = function(req, res) {
+  var searchModel = {};
+  Payment.find(searchModel, function (err, payments) {
+    if(err) { return handleError(res, err); } 
+    res.setHeader('Content-disposition', 'attachment; filename=tt_export.json');
+    return res.json(200, payments);
+  });
+};
+
 // Get a single payment
 exports.showByNameYearMon = function(req, res) {
   var searchModel = {'name': req.params.name,

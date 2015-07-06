@@ -17,4 +17,6 @@ router.get('/users/:name/:year/:month', auth.hasRole("admin"), controller.showBy
 router.delete('/users/:name/:year/:month', auth.hasRole("admin"), controller.destroyByNameYearMon)
 router.get('/users/:name/:year', auth.hasRole("admin"), controller.showByNameYear)
 
+router.get('/export/json', auth.hasRole("admin"), controller.genJsonExport)
+
 module.exports = router;
