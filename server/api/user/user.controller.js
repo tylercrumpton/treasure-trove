@@ -20,13 +20,21 @@ exports.index = function(req, res) {
   });
   var opts = {
     scope: 'one',
-    filter: '(objectClass=Maker)'};
+    filter: '(objectClass=Maker)',
+    attributes: ["*", "+"]
+  };
   var base = 'ou=People,dc=makerslocal,dc=org';  
   ldapclient.search(base, opts, function(err, ldapRes) {
     var userList = [];
-    console.log(ldapRes);
     ldapRes.on('searchEntry', function(entry) {
-      var user = {firstname:entry.object.givenName, lastname:entry.object.sn, realname:entry.object.displayName, username:entry.object.uid, email:entry.object.mail};
+      var user = {
+        firstname:entry.object.givenName,
+        lastname:entry.object.sn,
+        realname:entry.object.displayName,
+        username:entry.object.uid,
+        email:entry.object.mail,
+        joined_on:entry.object.createTimestamp
+      };
       userList.push(user);
     });
     ldapRes.on('error', function(err) {
