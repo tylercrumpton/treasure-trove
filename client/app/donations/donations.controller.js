@@ -68,9 +68,6 @@ angular.module('testmeanApp')
         $http.delete('/treasure/api/payments/users/'+username+'/'+$scope.year+'/'+month);
       }
 
-      var prev = $scope.membersDict[username].months[month];
-      $scope.membersDict[username].months[month] = 1-prev;
-
     };
 
     socket.socket.on('payment:save', function (data) {
