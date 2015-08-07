@@ -1,0 +1,24 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <h2>Your Donations for {{year}}</h2>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th ng-repeat="month in months" ng-bind="month"></th>
+      <tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td ng-class="{'delinquent-cell': $index==thisMonth-2, 'late-cell': $index==thisMonth+1}" ng-repeat="month in payments track by $index">
+        <button type="button" class="btn" ng-class="{'btn-success': month==1, 'btn-danger': month!=1}" aria-label="Mark Accepted">
+          <span class="glyphicon" ng-class="{'glyphicon-ok': month==1, 'glyphicon-remove': month!=1}" aria-hidden="true"></span>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<div ng-include="'components/footer/footer.html'"></div>

@@ -19,4 +19,7 @@ router.get('/users/:name/:year', auth.hasRole("admin"), controller.showByNameYea
 
 router.get('/export/json', auth.hasRole("admin"), controller.genJsonExport)
 
+router.get('/me/:year/:month', auth.isAuthenticated(), controller.showMineByYearMon)
+router.get('/me/:year', auth.isAuthenticated(), controller.showMineByYear)
+
 module.exports = router;

@@ -20,6 +20,26 @@ exports.genJsonExport = function(req, res) {
   Payment.find(searchModel, function (err, payments) {
     if(err) { return handleError(res, err); } 
     res.setHeader('Content-disposition', 'attachment; filename=tt_export.json');
+  });
+};
+// Get a single payment for logged in user
+exports.showMineByYearMon = function(req, res) {
+  var searchModel = {'name': req.user.name,
+                     'year': req.params.year,
+                     'month': req.params.month};
+  Payment.findOne(searchModel, function (err, payment) {
+    if(err) { return handleError(res, err); }
+    if(!payment) { return res.json({'paid':false}); }
+    return res.json({'paid':true});
+  });
+};
+
+// Get a year's payments for logged in user
+exports.showMineByYear = function(req, res) {
+  var searchModel = {'name': req.user.name,
+                     'year': req.params.year};
+  Payment.find(searchModel, function (err, payments) {
+    if(err) { return handleError(res, err); }
     return res.json(200, payments);
   });
 };
