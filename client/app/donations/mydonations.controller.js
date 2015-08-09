@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('testmeanApp')
-  .controller('MyDonationsCtrl', function ($scope, $http, socket, User) {
+  .controller('MyDonationsCtrl', function ($scope, $http, socket) {
     var date = new Date();
-    $scope.payments = [0,0,0,0,0,0,0,0,0,0,0,0]
+    $scope.payments = [0,0,0,0,0,0,0,0,0,0,0,0];
     $scope.year = date.getFullYear();
     $scope.thisMonth = date.getMonth();
     $scope.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

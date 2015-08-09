@@ -9,7 +9,7 @@ angular.module('testmeanApp')
       },
       link: function(scope, element, attrs) {
         scope.$watch('model', function (nv, ov) {
-          if (nv !== ov && attrs.dohighlight === "true") {
+          if (nv !== ov && attrs.dohighlight === 'true') {
             // apply class
             element.addClass('highlight');
 
@@ -22,10 +22,10 @@ angular.module('testmeanApp')
       }
     };
   }])
-  .filter("toArray", function(){
+  .filter('toArray', function(){
     return function(obj) {
       var result = [];
-      angular.forEach(obj, function(val, key) {
+      angular.forEach(obj, function(val) {
         result.push(val);
       });
       return result;
@@ -52,7 +52,7 @@ angular.module('testmeanApp')
    
     $scope.membersDict = {}; 
     User.query().$promise.then(function(result){
-      angular.forEach(result, function(u, i) {
+      angular.forEach(result, function(u) {
         $scope.membersDict[u.username] = {username: u.username, lastname: u.lastname, firstname: u.firstname, email: u.email, months: [0,0,0,0,0,0,0,0,0,0,0,0]};
         processUserPayments(u.username);
       });
@@ -60,7 +60,7 @@ angular.module('testmeanApp')
     });
 
     $scope.togglePayment = function(username, month) {
-      if($scope.membersDict[username].months[month] == 0) {
+      if($scope.membersDict[username].months[month] === 0) {
         $http.post('/treasure/api/payments', { name: username,
                                       month: month,
                                       year: $scope.year });

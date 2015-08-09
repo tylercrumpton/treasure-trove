@@ -41,7 +41,7 @@ exports.index = function(req, res) {
       return res.send(500, err);
     });
     ldapRes.on('end', function(result) {    
-      if (result.status == 0) {
+      if (result.status === 0) {
         res.json(200, userList);
       } else { 
         return res.send(500, err);
